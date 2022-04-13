@@ -8,55 +8,45 @@ import com.training.model.CrudRespository;
 import com.training.services.BookService;
 
 public class App {
-	
-public static void print( List<Book> args) {
-		
-		for(Book list1:args) {
-		System.out.println(list1);
-			
+	public static void print( List<Book>book) { //Collection<Book> can also  can be used because its a super class
+		for(Book eachvalue: book) {
+			System.out.println(eachvalue);
 		}
-
 	}
-
 
 	public static void main(String[] args) {
 		
+	Book java = new Book(101,"java","suba",450);
+	Book spring = new Book(103,"spring","mad",650);
+	Book maven = new Book(106,"maven","Harish",550);
+	Book html = new Book(104,"html","priya",1450);
+	Book python = new Book(105,"python","sathya",850);
+	
+	CrudRespository service = new BookService();
+	
+    System.out.println("is added :" +service.add(java));
+	service.add(java);
+	service.add(spring);
+	service.add(maven);
+	service.add(html);
+	service.add(python);
+	List<Book> bookList = service.findAll();
+	
+	Collections.sort(bookList);
+	System.out.println(bookList);
+	System.out.println("****************************************");
+	BookNameComparator book = new BookNameComparator();
+	Collections.sort(bookList,book);
+	print(bookList);
+	
+	
 
-		List<String> names = new ArrayList<>();
-		
-		names.add("Sathya");
-		names.add("vishnu");
-		names.add("Arun");
-		names.add("Thamo");
-		names.add("Guru");
-		
-		System.out.println("Names :" + names);
-		Collections.sort(names);
-		System.out.println("Sorted Names are :"+ names);
-		
-		Book java = new Book(100, "Java", "Subha", 450);
-		Book Spring = new Book(102, "Spring", "Vishnu", 650);
-		Book maven = new Book(103,"Maven","Kawin",550);
-		Book html = new Book(104,"Html","Prawin",1450);
-		Book python = new Book(105,"Python","Thamo",1500);
-		
-		CrudRespository service = new BookService();
-		System.out.println("Added :" +service.add(java));
-		System.out.println(service.add(Spring));
-		System.out.println(service.add(maven));
-		System.out.println(service.add(html));
-		System.out.println(service.add(python));
-		
-		List<Book> bookList = service.findAll();
-		
-		Collections.sort(bookList);
-		System.out.println(bookList);
-		System.out.println("****************************************");
-		BookNameComparator book = new BookNameComparator();
-		Collections.sort(bookList,book);
-		print(bookList);
-		
-		
-	}
 
+	System.out.println("Greater than value ");
+	List<Book> bookLists=((BookService)service).getBookGrtThan(1000);
+	bookLists.forEach(System.out::println);
+	
+	//System.out.println(((BookService)service).getBookGrtThan(20));
+	
+}
 }
