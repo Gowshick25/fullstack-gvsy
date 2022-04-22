@@ -66,6 +66,26 @@ CREATE TABLE Gowse_Member101 as SELECT * FROM gowse_member
  select * from gowse_books
 
 
- UPDATE gowse_books
-SET cost= 300, category = 'RDBMS'
-WHERE book_no =103 ;
+ UPDATE gowse_books SET cost= 300, category = 'RDBMS' WHERE book_no =103 ;
+ 
+ create table gowses_issue(
+                        LIB_ISSue_ID number(10) PRIMARY KEY,
+                        MEMBER_ID number(10) REFERENCES gowse_member(Member_Id),
+                        BOOK_NO NUMBER(10) REFERENCES gowse_MEMBER(MEMBER_ID),
+                        Issue_date date , return_date date, constraint "member" check( issue_date < return_date))
+ 
+ drop table gowses_issue
+ 
+ describe gowses_issue
+ 
+insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7001,101,101,'1-APR-22')
+
+insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7002,102,102,'25-APR-22')
+
+insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7003,103,103,'12-APR-22')
+
+insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7004,104,104,'16-APR-22')
+
+ insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7005,110,69,'17-APR-22')
+ 
+DELETE FROM gowses_issue WHERE book_no=69;
