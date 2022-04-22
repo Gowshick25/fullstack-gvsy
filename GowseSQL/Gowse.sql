@@ -9,7 +9,8 @@ DESCRIBE gowshickStudent
 CREATE TABLE  Gowse_Author(Phone_Number number(10)primary key,First_Name Varchar2(20),Second_Name Varchar2(20),City Varchar2(20),PinCode number(8));
 
 
-CREATE TABLE  Gowse_Book(Phone_Number number(10) primary key ,Book_Name varchar2(20),Price number(10,2),Author_Ref number(10) REFERENCES Gowse_Author(phone_Number),City VArchar(20),PinCode number(7));
+CREATE TABLE  Gowse_Book(Phone_Number number(10) primary key ,Book_Name varchar2(20),Price number(10,),Author_Ref number(10) REFERENCES Gowse_Author(phone_Number),City VArchar(20),PinCode number(7));
+
 DESCRIBE Gowse_Book
 
 DESCRIBE gowshick_product
@@ -27,5 +28,44 @@ DESCRIBE gowse_Books
 
 DESCRIBE gowse_issues
 
-
 drop table gowse_member;
+
+ALTER table gowse_issues add Reference varchar(30);
+
+ALTER table gowse_issues drop COLUMN Reference;
+
+ALTER table gowse_issues RENAME  TO gowse_Lib_Issue;
+
+INSERT into gowse_member (MEMBER_ID , MEMBERSHIP_TYPE, MEMBER_NAME , MEMBER_ADDRESS , ACC_OPEN_DATE , FEES_PAID , MAX_BOOKS_ALLOWED , PENALTY_AMOUNT)
+VALUES (1,'Lifetime','Richa_Sharma','Pune'	,'10-Dec-05',2500,5,5);
+
+INSERT into gowse_member (MEMBER_ID , MEMBERSHIP_TYPE, MEMBER_NAME , MEMBER_ADDRESS , ACC_OPEN_DATE , FEES_PAID , MAX_BOOKS_ALLOWED , PENALTY_AMOUNT)
+VALUES (2,'Annual','Sharma','delhi'	,'20-Dec-25',4500,3,2);
+
+INSERT into gowse_member (MEMBER_ID , MEMBERSHIP_TYPE, MEMBER_NAME , MEMBER_ADDRESS , ACC_OPEN_DATE , FEES_PAID , MAX_BOOKS_ALLOWED , PENALTY_AMOUNT)
+VALUES (3,'Lifetime','Rich_Sharma',''	,'4-jun-05',400,3,2);
+
+INSERT into gowse_member (MEMBER_ID , MEMBERSHIP_TYPE, MEMBER_NAME , MEMBER_ADDRESS , ACC_OPEN_DATE , FEES_PAID , MAX_BOOKS_ALLOWED , PENALTY_AMOUNT)
+VALUES (4,'Lifetime','Sharmaraj','chennai'	,'8-Dec-12',2000,3,2);
+
+
+CREATE TABLE Gowse_Member101 as SELECT * FROM gowse_member 
+
+ 
+ select * from gowse_member101
+ 
+ drop table gowse_books
+ 
+ DESCRIBE gowse_books101;
+
+ INSERT INTO GOWSE_BOOKS101 (SELECT * FROM GOWSE_BOOKS);
+ 
+ INSERT into gowse_Books VALUES (106,'NationalGeographic', 'Adis Scott', 1000,'Science');
+
+ 
+ select * from gowse_books
+
+
+ UPDATE gowse_books
+SET cost= 300, category = 'RDBMS'
+WHERE book_no =103 ;
