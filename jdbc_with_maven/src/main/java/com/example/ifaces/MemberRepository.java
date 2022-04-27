@@ -1,12 +1,11 @@
 package com.example.ifaces;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.ifaces.*;
+
 
 public class MemberRepository implements CrudRepository<Member> {
 
@@ -116,10 +115,10 @@ public Optional<Member> findById(int id) {
 		if(result.next()){
 		
 			int memberId =result.getInt("member_id");
+			String memberShipType = result.getString("membership_type");
 			String memberName = result.getString("member_name");
 			String memberAddress = result.getString("member_address");
-			Date accountOpenDate = result.getDate("acc_open_data");
-			String memberShipType = result.getString("membership_type");
+			Date accountOpenDate = result.getDate("acc_open_date");
 			int feesPaid = result.getInt("fees_paid");
 			int maxBooksAllowed = result.getInt("max_books_allowed");
 			int penaltyAmount = result.getInt("penalty_amount");
@@ -136,13 +135,13 @@ public Optional<Member> findById(int id) {
 		return obj;
 	}
 	
-	public int update(int id, Member obj) {
+	public int update1(int id, String obj) {
 		
 		int rowsUpdated=0;
 		String sql = "update gowse_member set member_name=? where member_id=?";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 		
-		pstmt.setString(1, obj.getMemberName());
+		pstmt.setString(1, obj);
 		pstmt.setInt(2, id);
 		
 		rowsUpdated = pstmt.executeUpdate();
@@ -151,6 +150,12 @@ public Optional<Member> findById(int id) {
 			e.printStackTrace();
 		} 
 		return rowsUpdated;
+	}
+
+	@Override
+	public int update(int Id, Member obj) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 
