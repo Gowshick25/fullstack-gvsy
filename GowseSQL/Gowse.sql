@@ -205,3 +205,29 @@ select * from gowshick_bill;
 
  select b.bill_number,a.amount from gowshick_bill a, gowshick_bill b where a.cus_ref = 409 and a.bill_date = b.bill_date
 
+
+create table Gowse_LoanApplication(application_number number(20),customer  REFERENCES gowse_customer(customer_id) ,loan_amount number(30))
+
+create table Gowse_Customer (Customer_id number (20) primary key, customer_name varchar(20),Phone_number number(10), credit_score number(10),constraint "customer" check( credit_score>300 and credit_score<800))
+
+select * from gowse_customer gc JOIN gowse_LoanApplication gl on gc.customer_id = gl.customer
+
+select gc.customer_Name,gc.phone_number,gl.application_number,gl.loan_amount 
+ from  gowse_customer gc,gowse_loanapplication gl where gc.customer_id = gl.customer;
+
+select * from gowse_customer
+
+select * from gowse_loanapplication
+
+
+
+
+
+
+
+
+
+
+
+
+
