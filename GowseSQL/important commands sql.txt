@@ -1,0 +1,66 @@
+    	"VIEW" 
+==================================================================================================================
+CREATE VIEW <viewname>
+        AS < select query>;
+------------------------------------------------------------------------------------------------------------------
+
+     	"INDEXES"
+==================================================================================================================
+CREATE  INDEX  index_name ON   table_name  (<column Name>) 
+
+CREATE INDEX emp_indx ON emp(ENAME);
+
+CREATE INDEX emp_indx ON emp(ENAME,JOB);
+------------------------------------------------------------------------------------------------------------------ 
+
+
+    	"TABLE BASICS"
+==================================================================================================================
+#*#create table GowshickBook
+       (book_Number number (5) PRIMARY KEY ,book_Name varchar2(20),author VARCHAR2(20),price number(5,2));
+
+
+#*#INSERT into gowse_member (MEMBER_ID , MEMBERSHIP_TYPE, MEMBER_NAME , MEMBER_ADDRESS , ACC_OPEN_DATE , FEES_PAID , MAX_BOOKS_ALLOWED , PENALTY_AMOUNT)
+VALUES (1,'Lifetime','Richa_Sharma','Pune'	,'10-Dec-05',2500,5,5);
+
+#*#constraint "member" check( issue_date < return_date))
+
+
+
+#*#CREATE TABLE Gowse_Member101 as SELECT * FROM gowse_member 
+
+#*#INSERT INTO GOWSE_BOOKS101 (SELECT * FROM GOWSE_BOOKS);
+
+
+#*#ALTER table gowse_issues add Reference varchar(30);
+
+#*#ALTER table gowse_issues drop COLUMN Reference;
+
+#*#ALTER table gowse_issues RENAME  TO gowse_Lib_Issue;
+
+#*#DELETE FROM gowses_issue WHERE book_no=69;
+
+
+
+#*#select * from gowse_member101
+ 
+#*#drop table gowse_books
+ 
+
+
+DESCRIBE GowshickBook
+
+
+new 
+------------------------------------------------------------------------------------------------------------------
+
+select round(5464.9464) from dual;
+==================================================================================================================
+
+ alice
+==================================================================================================================
+
+select gp.product_id, gp.product_name, gp.price, gi.invoice_Number, gi.customer_name, gi.quantity from gowshick_product gp, gowshick_invoice gi where gp.product_id=gi.product_ref
+------------------------------------------------------------------------------------------------------------------
+					XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+------------------------------------------------------------------------------------------------------------------

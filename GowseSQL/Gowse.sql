@@ -66,7 +66,7 @@ CREATE TABLE Gowse_Member101 as SELECT * FROM gowse_member
  select * from gowse_books
 
 
- UPDATE gowse_books SET cost= 300, category = 'RDBMS' WHERE book_no =103 ;
+ INSERT INTO GOWSE_BOOKS101 (SELECT * FROM GOWSE_BOOKS);
  
  create table gowses_issue(
                         LIB_ISSue_ID number(10) PRIMARY KEY,
@@ -89,3 +89,119 @@ insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7004
  insert into gowses_issue (LIB_ISSUE_ID,MEMBER_ID,BOOK_NO,ISSUE_DATE) VALUES(7005,110,69,'17-APR-22')
  
 DELETE FROM gowses_issue WHERE book_no=69;
+
+
+select round(5464.9464) from dual;
+
+
+create table gowshick_product (product_id number (2) primary key , product_name varchar2 (20),price number(10,2));
+
+insert into gowshick_product values(01,'tv',450)
+
+insert into gowshick_product values(02,'fridge',11500)
+
+insert into gowshick_product values(03,'laptop',25000)
+
+create table gowshick_invoice 
+(invoice_Number number(5) primary key , customer_name varchar2(20), quantity number(3), product_ref REFERENCES gowshick_product(product_id));
+
+insert into gowshick_invoice values (204,'malathi',2,01)
+
+insert into gowshick_invoice values (205,'sathiya',4,02)
+
+insert into gowshick_invoice values (206,'yovel',3,03)
+
+insert into gowshick_invoice values(207,'viks',25,01)
+
+
+
+update  gowshick_invoice set customer_name = 'vishnu' where invoice_number =204
+
+select * from gowshick_product,gowshick_invoice
+
+select gp.product_id, gp.product_name, gp.price, gi.invoice_Number, gi.customer_name, gi.quantity from gowshick_product gp, gowshick_invoice gi where gp.product_id=gi.product_ref
+
+select gp.product_id,gp.product_name,gi.customer_name,gp.price*gi.quantity amount
+from gowshick_product gp,gowshick_invoice gi
+where gi.product_ref=gp.product_id
+
+select * from gowshick_product gp LEFT OUTER JOIN gowshick_invoice gi on gp.product_id=gi.product_ref
+
+select * from gowshick_product gp right OUTER JOIN gowshick_invoice gi on gp.product_id=gi.product_ref
+
+create view gowshick_product_view as select product_id,product_name from gowshick_product
+
+select * from gowshick_product_view
+
+insert into gowshick_product_view values(107,'mobile');
+select view_name, text from user_views where view_name='gowshick_PRODUCT_VIEW';
+
+CREATE INDEX gowse_product_name_index on gowshick_product (product_name);
+
+create table gowshick_catalog (grade varchar(1) primary key,max_price number(10,2),min_price number(10,2));
+
+insert into gowshick_catalog values('A',10000,1000);
+insert into gowshick_catalog values('B',5000,500);
+insert into gowshick_catalog values('C',3000,200);
+
+select * from gowshick_catalog
+ 
+select * from gowshick_product
+
+select p.product_name , p.price , c.grade 
+from gowshick_product p  , gowshick_catalog c
+where p.price between c.max_price and c.min_price
+
+select price from gowshick_product;
+
+drop table gowshick_bill
+
+create table gowshick_bill(bill_number number (5) primary key,bill_date date,amount number(10,2),cus_ref number(3))
+
+select * from gowshick_bill
+
+create sequence gowshick_seq start with 101 increment by 1 maxvalue 1000
+
+insert into gowshick_bill values (gowshick_seq.nextval,sysdate,14500,108)
+
+insert into gowshick_bill values (gowshick_seq.nextval,sysdate,15680,109)
+
+insert into gowshick_bill values (gowshick_seq.nextval,sysdate,167900,110)
+
+insert into gowshick_bill values (gowshick_seq.nextval,sysdate,157880,111)
+
+update  gowshick_bill set cus_ref = cus_ref+100 where cus_ref >103
+
+select * from gowshick_bill;
+
+
+List of Bills on the same date as that of customer_ref =305
+
+Select b.bill_number from gowshick_bill a, gowshick_bill b where a.cus_Ref=305 and a.bill_date=b.bill_date
+
+
+
+create sequence gowshick_seq1 start with 101 increment by 1 maxvalue 1000
+
+insert into gowshick_bill values(gowshick_seq1.nextval,sysdate,14580,101)
+
+insert into gowshick_bill values(gowshick_seq1.nextval,sysdate,15896,102)
+
+insert into gowshick_bill values(gowshick_seq1.nextval,sysdate,20546,103)
+
+insert into gowshick_bill values(gowshick_seq1.nextval,sysdate,32568,105)
+
+insert into gowshick_bill values(gowshick_seq1.nextval,sysdate,45623,106)
+
+insert into gowshick_bill values(gowshick_seq1.nextval,to_date ('10-jan-2022')+5,52369,114)
+insert into gowshick_bill values(gowshick_seq1.nextval,add_months( to_date ('10-jan-2022'),5),76519,115)
+
+
+update gowshick_bill set cus_ref = cus_ref+100
+update gowshick_bill set amount = amount+1000
+
+
+select * from gowshick_bill;
+
+ select b.bill_number,a.amount from gowshick_bill a, gowshick_bill b where a.cus_ref = 409 and a.bill_date = b.bill_date
+
