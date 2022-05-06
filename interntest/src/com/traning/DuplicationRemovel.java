@@ -20,14 +20,20 @@ class Fruit implements Comparable<Fruit>{
 		this.fruitNames = fruitNames;
 	}
 
-	@Override
-	public int compareTo(Fruit value) {
-		return this.fruitNames.compareTo(value.fruitNames);
-	}
+//	@Override
+//	public int compareTo(Fruit value) {
+//		return this.fruitNames.compareTo(value.fruitNames);
+//	}
 
 	@Override
 	public String toString() {
 		return this.fruitNames;
+	}
+
+	@Override
+	public int compareTo(Fruit o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
