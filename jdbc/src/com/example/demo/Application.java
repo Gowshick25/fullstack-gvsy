@@ -16,22 +16,27 @@ public class Application {
 		
 		ProductService service= new ProductService(con);
 		
-		Product toAdd = new Product(6,"helo",20.00);
+		//Product toAdd = new Product(6,"helo",20.00);
 		
-		int rowAdded = service.addProduct(toAdd);
+		//int rowAdded = service.addProduct(toAdd);
 		
-		System.out.println("Row Added : "+ rowAdded);
+		//System.out.println("Row Added : "+ rowAdded);
 		
 		service.deleteById(4);
 		
-		service.updatePriceByName("helo", 27);
+		//service.updatePriceByName("helo", 27);
 	
 		service.findAll().forEach(System.out::println);
 	
 		System.out.println(service.findById(2));
 		
-	
+		Product kathli = new Product(10, "badam kathli", 450.00);
 		
+		Product cream = new Product (60, "ice cream ", 300.00);
+		
+		service.usingTxn(kathli, cream);
+	
+		service.findAll().forEach(System.out::println);
 		}catch (SQLException e)
 		{
 			e.printStackTrace();
