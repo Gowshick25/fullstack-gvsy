@@ -21,7 +21,7 @@ public class Driver {
 	private int driverId;
 	
 	@Column(name = "driver_name")
-	private String drivername;
+	private String driverName;
 	
 	@Column(name = "mobile_number")
 	private long mobileNumber;

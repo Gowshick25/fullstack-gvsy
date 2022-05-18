@@ -1,9 +1,8 @@
 package com.example.demo.services;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Driver;
@@ -35,35 +34,41 @@ public class DriverService {
 		return this.repo.findById(id).orElseThrow(()->new RuntimeException(id+"not found"));
 	}
 
-//	public void DeleteById(int id) {
-//		this.repo.deleteById(id);
-//	
-//		
-//	}
-
-
-	public Optional<Driver> removeDriver(Driver entity) {
-		
-		   Optional<Driver> optional = Optional.empty();
-
-		   if(this.repo.existsById(entity.getDriverId())) {
-
-		   this.repo.delete(entity);
-
-		   optional = Optional.of(entity);
-		   }
-
-		         return optional;  
+	public String delete(int id) {
+		String message;
+		try {
+		 this.repo.deleteById(id);
+		 message="One element deleted";
+		 return message;
+		 
+		 
+		} catch (Exception e) {
+			e.printStackTrace();
+			message="Not found";
+		}
+		return message;
 	}
 	
-//	public void DeleteById(int id) 
-//	{
-//		try {
-//			this.repo.deleteById(id);
-//		} catch (Exception e) {
-//			e.printStackTrace(System.out.printf("not found"));
-//		}
-//	}
+	public List<Driver> findByDrivername(String srchName){
+		return this.repo.findByDriverName(srchName);
+	}
 	
+	public List<Driver> findByMobileNumber(long mobilenumber){
+		return this.repo.findByMobileNumber(mobilenumber);
+	}
+	
+	public List<Driver> searchByRating(double rating){
+		return this.repo.searchByRating(rating);
+	}
+	
+	public int modifyRating(int driverId, double updatedRating) {
+		return this.repo.modifyRating(driverId, updatedRating);
+	}
+	
+	
+	public List<Driver> sortedList(String propName)
+	{
+		return this.repo.findAll(Sort.by(propName));
+	}
 	
 }
