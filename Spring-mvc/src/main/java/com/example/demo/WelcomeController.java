@@ -13,7 +13,7 @@ public class WelcomeController {
 	@ResponseBody
 	public String getMessage()
 	{
-		return "<marquee bgcolor=\"Green\" behavior=alternate direction=left loop=\"\"> <h1> welcome to mvc <h1> </marquee>";
+		return "<marquee bgcolor=\"10457 \" behavior=alternate direction=left loop=\"\"> <h1> welcome to mvc <h1> </marquee>";
 	}
 
 }
