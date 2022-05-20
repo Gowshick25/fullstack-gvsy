@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@10.90.1.105:1521/DEV
+    username: HR
+    password: HR
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      
+      
+      
+      
+      
+spring:
+  application:
+    name: actuator-example
+
+info:
+  app:
+    name: ${spring.application.name}
+    author: java
+  build:
+    artifactId: 'com.example:Spring_rest_with_caching:jar:0.0.1-SNAPSHOT'
+    groupId: 'com.example'
+    version: '0.0.1-SNAPSHOT'
+  java:
+    version:1.8.0_171
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+     
+  endpoint:
+    health:
+      show-details:  always
+      
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true 
