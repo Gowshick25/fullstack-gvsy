@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: eureka-registry-new
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Gowshick.R
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://spring.io/projects/spring-boot/eureka-regi
+ stry-new
+Created-By: Maven Integration for Eclipse
+
